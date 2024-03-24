@@ -11,7 +11,15 @@ Before(async () => {
   page = await browser.newPage()
 })
 
-After(async () => {
+After(async function (scenario) {
+  if (scenario.result?.status === "FAILED") {
+    const screenshot = await page.screenshot({
+      path: `./Screenshots/${scenario.pickle.name}.png`,
+    })
+
+    this.attach(screenshot, "image/png")
+  }
+
   await browser.close()
 })
 
