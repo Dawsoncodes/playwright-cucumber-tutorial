@@ -2,11 +2,14 @@ import { config } from "dotenv"
 config()
 import { After, Before, setDefaultTimeout } from "@cucumber/cucumber"
 import { Browser, Page, chromium } from "@playwright/test"
+import { v4 as uuid } from "uuid"
 
 let page: Page
 let browser: Browser
 
 setDefaultTimeout(60000)
+
+const buildId = uuid()
 
 Before(async ({ pickle }) => {
   const capabilities = {
@@ -14,7 +17,7 @@ Before(async ({ pickle }) => {
     browserVersion: "latest",
     "LT:Options": {
       platform: "Windows 10",
-      build: "Playwright Cucumber Tutorial",
+      build: "Playwright Cucumber Tutorial-" + buildId,
       name: pickle.name,
       user: process.env.LT_USERNAME,
       accessKey: process.env.LT_ACCESS_KEY,
