@@ -17,7 +17,7 @@ Before(async ({ pickle }) => {
     browserVersion: "latest",
     "LT:Options": {
       platform: "Windows 10",
-      build: "Playwright Cucumber Tutorial-" + buildId,
+      build: "Playwright Cucumber Tutorial " + `(${buildId})`,
       name: pickle.name,
       user: process.env.LT_USERNAME,
       accessKey: process.env.LT_ACCESS_KEY,
